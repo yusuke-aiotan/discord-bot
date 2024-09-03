@@ -34,18 +34,17 @@ async def on_message(message):
         openai_api_key = getenv('OPENAI_API_KEY')
         openai.api_key = openai_api_key
 
-        # メッセージ履歴を1つの文字列に結合して prompt として渡す
-        prompt = "\n".join([msg["content"] for msg in messages if msg["role"] != "system"])
-
-        response = openai.Completion.create(
-            model="text-davinci-003",  # GPT-3.5の代わりに最新のモデルを指定
-            prompt=prompt,
-            max_tokens=150
-        )
-
-        response_text = response.choices[0].text.strip()
-        print(response_text)
-        await message.channel.send(response_text)
+        try:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=messages
+            )
+            response_text = response.choices[0].message['content']
+            print(response_text)
+            await message.channel.send(response_text)
+        except Exception as e:
+            print(f"Error: {e}")
+            await message.channel.send("エラーが発生しました。")
 
 token = getenv('DISCORD_BOT_TOKEN')
 bot.run(token)
