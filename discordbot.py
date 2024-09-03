@@ -11,7 +11,7 @@ bot = commands.Bot(command_prefix='/', intents=intents)
 
 # メッセージの履歴を管理するリスト
 messages = [
-    {"role": "system", "content": "You are a helpful assistant. The AI assistant's name is AI Qiitan."},
+    {"role": "system", "content": "You are a helpful assistant. The AI assistant's name is タンbot."},
     {"role": "user", "content": "こんにちは。あなたは誰ですか？"},
     {"role": "assistant", "content": "私は AI アシスタントの タンbot です。なにかお手伝いできることはありますか？"}
 ]
@@ -36,7 +36,7 @@ async def on_message(message):
 
         try:
             response = openai.chat.completions.create(
-                model="gpt-3.5-turbo",
+                model="gpt-4o",
                 messages=messages
             )
             response_text = response.choices[0].message.content
