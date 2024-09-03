@@ -35,7 +35,7 @@ async def on_message(message):
         openai.api_key = openai_api_key
 
         try:
-            response = openai.ChatCompletion.create(
+            response = openai.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=messages
             )
