@@ -40,8 +40,16 @@ async def on_message(message):
                 messages=messages
             )
             response_text = response.choices[0].message.content
-            print(response_text)
-            await message.channel.send(response_text)
+
+            # 各文に「ﾄﾞﾘｬ!」を追加
+            response_lines = response_text.split('\n')
+            response_lines_with_suffix = [line + " ﾄﾞﾘｬ!" for line in response_lines]
+            response_text_with_suffix = '\n'.join(response_lines_with_suffix)
+            # 会話の最後に追加メッセージを追加
+            final_response_text = response_text_with_suffix + "\n私は創造主のあいおタン様に変わりいつでもアナタ様をサポートいたします。"
+
+            print(final_response_text)
+            await message.channel.send(final_response_text)
         except Exception as e:
             print(f"Error: {e}")
             await message.channel.send("エラーが発生しました。")
