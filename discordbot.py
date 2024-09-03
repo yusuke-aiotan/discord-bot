@@ -35,11 +35,11 @@ async def on_message(message):
         openai.api_key = openai_api_key
 
         try:
-            response = openai.ChatCompletion.create(
-                model="gpt-4",
+            response = openai.chat.completions.create(
+                model="gpt-3.5-turbo",
                 messages=messages
             )
-            response_text = response.choices[0].message['content']
+            response_text = response.choices[0].message.content
             print(response_text)
             await message.channel.send(response_text)
         except Exception as e:
