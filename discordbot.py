@@ -36,7 +36,7 @@ async def on_message(message):
 
         try:
             response = openai.chat.completions.create(
-                model="gpt-3.5-turbo",
+                model="gpt-4o",
                 messages=messages
             )
             response_text = response.choices[0].message['content']
