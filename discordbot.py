@@ -35,8 +35,8 @@ async def on_message(message):
         openai.api_key = openai_api_key
 
         try:
-            response = openai.chat.completions.create(
-                model="gpt-4o",
+            response = openai.ChatCompletion.create(
+                model="gpt-4",
                 messages=messages
             )
             response_text = response.choices[0].message['content']
