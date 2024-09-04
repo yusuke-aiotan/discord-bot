@@ -43,10 +43,10 @@ async def on_message(message):
 
             # 各文に「ﾄﾞﾘｬ!」を追加
             response_lines = response_text.split('\n')
-            response_lines_with_suffix = [line + " ﾄﾞﾘｬ!" for line in response_lines]
+            response_lines_with_suffix = [line + " ﾄﾞﾘｬ!" if line.strip() != '' else line for line in response_lines]
             response_text_with_suffix = '\n'.join(response_lines_with_suffix)
             # 会話の最後に追加メッセージを追加
-            final_response_text = response_text_with_suffix + "\n私は創造主のあいおタン様に変わりいつでもアナタ様をサポートいたします。"
+            final_response_text = response_text_with_suffix + "\n\n私は創造主のあいおタン様に変わりいつでもアナタ様をサポートいたします。"
 
             print(final_response_text)
             await message.channel.send(final_response_text)
